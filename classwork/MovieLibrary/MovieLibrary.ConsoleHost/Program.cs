@@ -4,6 +4,7 @@
 //  IsBlackAndWhite
 // Operations: Add, edit, view, delete
 
+using System.Collections.Specialized;
 using System.Data;
 
 string title = "", description = "";
@@ -21,7 +22,7 @@ var done = false;
 do
 {
     switch (DisplayMenu()) 
-        //Switch statementsOnly works when comparing the exact same value against different results. IE, the returned value from the DisplayMenu() function
+        //Switch statements Only works when comparing the exact same value against different results. IE, the returned value from the DisplayMenu() function
         //No fallthrough on C# switch statements. requires break; , or return statement if in a function, after every case statement
     {
         case 1: AddMovie(); break;
@@ -51,19 +52,21 @@ void EditMovie ()
 
 void DeleteMovie()
 {
-    if (!Confirm("Are you sure you want to delete the movie? (Y/N): "))
+    if (String.IsNullOrEmpty(title))
         return;
-    Console.WriteLine("Not implimented yet");
+    if (!Confirm($"Are you sure you want to delete the movie '{title}' ? (Y/N): "))
+        return;
+    title = "";
 }
 int DisplayMenu ()
 {
-    Console.WriteLine("-----------------");
+    Console.WriteLine("".PadLeft(10, '-'));
     Console.WriteLine("A)dd Movie");
     Console.WriteLine("E)dit Movie");
     Console.WriteLine("D)elete Movie");
     Console.WriteLine("V)iew Movie");
     Console.WriteLine("Q)uit");
-    Console.WriteLine("-----------------");
+    Console.WriteLine("".PadLeft(10, '-'));
 
     do
     {
@@ -106,21 +109,24 @@ void AddMovie ()
 
 void ViewMovie ()
 {
-    Console.WriteLine("\n--------------");//escape characters \n \t \" \' \\
-    //verbatim strings use a @ before the value. filePath = @"C:\windows\temp"; || filePath = """   """; <--Raw String
-
+    Console.WriteLine("".PadLeft(10,'-'));
+    if(String.IsNullOrEmpty(title))
+    {
+        Console.WriteLine("No movies available.");
+        return;
+    }
     Console.WriteLine(title);
-
+ 
     //Run Length: ## mins
-    Console.WriteLine("Run Length: " + length + " mins");
+    Console.WriteLine($"Run Length: {length} mins");
 
     //Released yyyy
-    Console.WriteLine("Released " + releaseYear);
+    Console.WriteLine($"Released: {releaseYear}");
 
     Console.WriteLine(genre);
 
     //MPAA Rating: 
-    Console.WriteLine("MPAA Rating: " + rating);
+    Console.WriteLine($"MPAA Rating: {rating} ");
 
     //V2
     string format = isBlackAndWhite ? "Black and White" : "Color";
@@ -130,6 +136,7 @@ void ViewMovie ()
     //Console.WriteLine("Format: " + (isBlackAndWhite ? "Black and White" : "Color"));
 
     Console.WriteLine(description);
+    Console.WriteLine("".PadLeft(10, '-'));
 }
 
 bool ReadBoolean (string message )
@@ -179,7 +186,7 @@ int ReadInt (string message, int minimumValue )
     do
     {
         string value = Console.ReadLine();
-        if (Int32.TryParse(value, out var result)) //inline declaration
+        if (int.TryParse(value, out var result)) //inline declaration
             if (result >= minimumValue)
                 return result;
 
@@ -193,7 +200,7 @@ string ReadString (string message, bool isRequired )
 
     do
     {
-        string value = Console.ReadLine();
+        string value = Console.ReadLine().Trim();
 
         if (!isRequired || !String.IsNullOrEmpty(value))
             return value;
@@ -214,15 +221,16 @@ string ReadRating (string message)
 
     do
     {
-        string value = Console.ReadLine().ToUpper();
+        
+        string value = Console.ReadLine();
 
-        if (value == "PG")
+        if (String.Equals(value, "PG", StringComparison.CurrentCultureIgnoreCase))
             return "PG";
-        else if (value == "G")
+        else if (String.Equals(value, "G", StringComparison.CurrentCultureIgnoreCase))
             return "G";
-        else if (value == "PG-13")
+        else if (String.Equals(value, "PG-13", StringComparison.CurrentCultureIgnoreCase))
             return "PG-13";
-        else if (value == "R")
+        else if (String.Equals(value, "R", StringComparison.CurrentCultureIgnoreCase))
             return "R";
         else if (String.IsNullOrEmpty(value)) //empty string can also be shown as  value == String.Empty String.IsNullOrEmpty() is the way to check for empty strings
             return "";
