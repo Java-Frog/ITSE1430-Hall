@@ -186,7 +186,7 @@ int ReadInt (string message, int minimumValue )
     do
     {
         string value = Console.ReadLine();
-        if (int.TryParse(value, out var result)) //inline declaration
+        if (Int32.TryParse(value, out var result)) //inline declaration
             if (result >= minimumValue)
                 return result;
 
