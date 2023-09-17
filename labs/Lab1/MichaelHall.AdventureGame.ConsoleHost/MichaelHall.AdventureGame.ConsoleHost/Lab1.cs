@@ -219,8 +219,7 @@ int Room2 ()
     string roomEvent = "You can see a stick of chalk sitting on the metal edge of the blackboard.";
     bool eventKey = false;
     bool roomChange = false;
-    string chalkString="";
-
+    string chalkString = " ";
     DisplayOptions(roomDiscription, option1, option2, option3, option4);
     do
     {
@@ -411,7 +410,7 @@ int Room5 ()
     string option1 = "To the [N]orth, an odd circular hole in the wall is found.";
     string option2 = "To the [E]ast,behind the bar, a red velvet drape covers a doorway.";
     string option3 = "To the [W]est, swinging doors are installed over an out of place office door.";
-    string option4 = "To the [S]outh, doors to what you imagine to be the cellar are found.";
+    string option4 = "To the [S]outh, you see doors to what you imagine to be the cellar.";
     string roomEvent = "As you explore the room, the player piano abrubtly stops. The hair on the back of your neck stands up. Something or someone is watching you.";
     bool eventKey = false;
     bool roomChange = false;
@@ -525,169 +524,160 @@ int Room6 ()
     } while (!roomChange);
     return 0;
 }
+int Room7 ()
+{
+    string roomDiscription = "You enter a narrow, neon-lit alleyway in a futuristic cyberpunk city. " +
+        "\nHolographic billboards illuminate the surroundings, casting a vibrant glow on the grimy walls. Hovering drones whir above, and the air is filled with the faint hum of technology.";
+    string option1 = "To the [N]orth, a door with a plaque that reads 'Observatory'.";
+    string option2 = "To the [E]ast, an open set of sidewalk cellar doors.";
+    string option3 = "To the [W]est, a digital bill board flickers to life.";
+    string option4 = "To the [S]outh, wind blows through an empty public transit station. ";
+    string roomEvent = "An oddly familiar train barrels through the transit station.";
+    bool eventKey = false;
+    bool roomChange = false;
+    DisplayOptions(roomDiscription, option1, option2, option3, option4);
+    do
+    {
+        switch (Console.ReadKey(true).Key)
+        {
+            case ConsoleKey.N:
+            {
+               if(Confirm("Do you approach the observatory door and enter?[Y/N]"))
+                {
+                    return 4;
+                }
+                break;
+            }
 
-//int Room7 () {
-//    string roomDiscription = "ou enter a narrow, neon-lit alleyway in a futuristic cyberpunk city. " +
-//        "Holographic billboards illuminate the surroundings, casting a vibrant glow on the grimy walls. Hovering drones whir above, and the air is filled with the faint hum of technology.";
-//    string option1 = "To the [N]orth ";
-//    string option2 = "To the [E]ast ";
-//    string option3 = "To the [W]est ";
-//    string option4 = "To the [S]outh ";
-//    string roomEvent = "";
-//    bool eventKey = false;
-//    bool roomChange = false;
-//    DisplayOptions(roomDiscription, option1, option2, option3, option4);
-//    do
-//    {
-//        switch (Console.ReadKey(true).Key)
-//        {
-//            case ConsoleKey.N:
-//            {
-//                Console.WriteLine("");
-//                if (eventKey)
-//                {
-//                    Console.WriteLine("");
-//                    return;
+            case ConsoleKey.E:
+            {
+                if(Confirm("Decend into the street side cellar?[Y/N]"))
+                {
+                    return 8;
+                }
+                break;
+            }
 
-//                } else
-//                {
-//                    Console.WriteLine("");
-//                    break;
-//                }
-//            }
+            case ConsoleKey.W:
+            {
+                Console.WriteLine("The billboard flashes the latest and greatest products, all while a built in camera gathers your reactions for future ad campaigns.");
+                break;
+            }
 
-//            case ConsoleKey.E:
-//            {
-//                Console.WriteLine("");
-//                roomChange=true;
+            case ConsoleKey.S:
+            {
+                Console.WriteLine("Graffiti covers most of the stations walls, while a screen flashes the expected arrival time of the next train.");
+                break;
+            }
 
-//                break;
-//            }
+        }
+    } while (!roomChange);
+    return 0;
+}
+int Room8 ()
+{
+    string roomDiscription = "Descending into an underground bunker, you discover a hidden world of espionage. " +
+        "Dimly lit rooms contain vintage radio equipment, maps with cryptic markings, and rows of surveillance monitors. The air is tense with the weight of classified secrets.";
+    string option1 = "To the [N]orth, the faint sounds of a piano can be heard from up a narrow set of stairs.";
+    string option2 = "To the [E]ast, a dark and cobwebbed filled tunnel welcomes you.";
+    string option3 = "To the [W]est, a technicolor stream of light poors down a metal staircase.";
+    string option4 = "To the [S]outh, a wall of CRT monitors, reel-to-reel recorders and a cluttered table.";
+    string roomEvent = "The monitors along the South wall being to count down. 3....2....1....0. Whatever it was counting down to must not have been important.";
+    bool eventKey = false;
+    bool roomChange = false;
+    DisplayOptions(roomDiscription, option1, option2, option3, option4);
+    do
+    {
+        switch (Console.ReadKey(true).Key)
+        {
+            case ConsoleKey.N:
+            {
+               if (Confirm("Do you ascend the narrow staircase? [Y/N]"))
+                {
+                    {
+                        return 5;
+                    }
+                }
+                break;
+            }
 
-//            case ConsoleKey.W:
-//            {
-//                Console.WriteLine("");
-//                break;
-//            }
+            case ConsoleKey.E:
+            {
+              if(Confirm("Travel into the dark tunnel?[Y/N]"))
+                    {
+                    return 9;
+                    }
+                break;
+            }
 
-//            case ConsoleKey.S:
-//            {
-//                Console.WriteLine("");
-//                roomChange=true;
-//                break;
-//            }
+            case ConsoleKey.W:
+            {
+                if(Confirm("Shield your eyes as you head into the bright staircase?"))
+                {
+                    return 7;
+                }
+                break;
+            }
 
-//        }
-//    } while (!roomChange);
-//}
-//int Room8 () {
-//    string roomDiscription = "Descending into an underground bunker, you discover a hidden world of espionage. " +
-//        "Dimly lit rooms contain vintage radio equipment, maps with cryptic markings, and rows of surveillance monitors. The air is tense with the weight of classified secrets.";
-//    string option1 = "To the [N]orth ";
-//    string option2 = "To the [E]ast ";
-//    string option3 = "To the [W]est ";
-//    string option4 = "To the [S]outh ";
-//    string roomEvent = "";
-//    bool eventKey = false;
-//    bool roomChange = false;
-//    DisplayOptions(roomDiscription, option1, option2, option3, option4);
-//    do
-//    {
-//        switch (Console.ReadKey(true).Key)
-//        {
-//            case ConsoleKey.N:
-//            {
-//                Console.WriteLine("");
-//                if (eventKey)
-//                {
-//                    Console.WriteLine("");
-//                    return;
+            case ConsoleKey.S:
+            {
+                Console.WriteLine("The monitors seem to depict odd angles of rooms you have passed through.");
+                break;
+            }
+        }
+    } while (!roomChange);
+    return 0;
+}
+int Room9 ()
+{
+    string roomDiscription = "In a quaint clockmaker's workshop, antique timepieces line the shelves. " +
+        "The room is filled with the rhythmic ticking and chiming of various clocks. Gears and cogs are meticulously arranged on workbenches, and a grandfather clock stands tall in the corner.";
+    string option1 = "To the [N]orth, a sturdy wooden door sits closed.";
+    string option2 = "To the [E]ast, display cases line a store front window.";
+    string option3 = "To the [W]est, a beaded doorway, with a sign reading 'Employee's Only'.";
+    string option4 = "To the [S]outh, an assortment of delicate tools and a complicated mechanisms rest on a thick oak table.";
+    string roomEvent = "Suddenly, all the clocks chime at once, catching you off guard as you hastily cover your ears to shield yourself from the unexpected cacophonous sound.";
+    bool eventKey = false;
+    bool roomChange = false;
+    DisplayOptions(roomDiscription, option1, option2, option3, option4);
+    do
+    {
+        switch (Console.ReadKey(true).Key)
+        {
+            case ConsoleKey.N:
+            {
+                if(Confirm("Exit the shop through the wooden door? [Y/N]"))
+                {
+                    return 6;
+                }
+                break;
+            }
 
-//                } else
-//                {
-//                    Console.WriteLine("");
-//                    break;
-//                }
-//            }
+            case ConsoleKey.E:
+            {
+                Console.WriteLine("You take a second to appreciate the fine craftsmanship of the displayed time pieces.");
+                break;
+            }
 
-//            case ConsoleKey.E:
-//            {
-//                Console.WriteLine("");
-//                roomChange=true;
+            case ConsoleKey.W:
+            {
+                if(Confirm("Ignore the 'Employee's Only' sign and walk pass the bead door?[Y/N"))
+                {
+                    return 8;
+                }
+                break;
+            }
 
-//                break;
-//            }
+            case ConsoleKey.S:
+            {
+                Console.WriteLine("Approach the work bench and manage to resist the urge to tinker with some of these on-going projects.");
+                break;
+            }
 
-//            case ConsoleKey.W:
-//            {
-//                Console.WriteLine("");
-//                break;
-//            }
-
-//            case ConsoleKey.S:
-//            {
-//                Console.WriteLine("");
-//                roomChange=true;
-//                break;
-//            }
-
-//        }
-//    } while (!roomChange);
-//}
-//int Room9 () {
-//    string roomDiscription = "In a quaint clockmaker's workshop, antique timepieces line the shelves. " +
-//        "The room is filled with the rhythmic ticking and chiming of various clocks. Gears and cogs are meticulously arranged on workbenches, and a grandfather clock stands tall in the corner.";
-//    string option1 = "To the [N]orth ";
-//    string option2 = "To the [E]ast ";
-//    string option3 = "To the [W]est ";
-//    string option4 = "To the [S]outh ";
-//    string roomEvent = "";
-//    bool eventKey = false;
-//    bool roomChange = false;
-//    DisplayOptions(roomDiscription, option1, option2, option3, option4);
-//    do
-//    {
-//        switch (Console.ReadKey(true).Key)
-//        {
-//            case ConsoleKey.N:
-//            {
-//                Console.WriteLine("");
-//                if (eventKey)
-//                {
-//                    Console.WriteLine("");
-//                    return;
-
-//                } else
-//                {
-//                    Console.WriteLine("");
-//                    break;
-//                }
-//            }
-
-//            case ConsoleKey.E:
-//            {
-//                Console.WriteLine("");
-//                roomChange=true;
-
-//                break;
-//            }
-
-//            case ConsoleKey.W:
-//            {
-//                Console.WriteLine("");
-//                break;
-//            }
-
-//            case ConsoleKey.S:
-//            {
-//                Console.WriteLine("");
-//                roomChange=true;
-//                break;
-//            }
-
-//        }
-//    } while (!roomChange);
-//}
+        }
+    } while (!roomChange);
+    return 0;
+}
 void DisplayOptions(string roomDescription,string option1,  string option2, string option3, string option4)
 {
     Console.WriteLine("".PadLeft(40, '-'));
@@ -732,9 +722,9 @@ do
         case 4: playerRoom = Room4(); break;
         case 5: playerRoom = Room5(); break;
         case 6: playerRoom = Room6(); break;
-        //case 7: playerRoom = Room7();
-        //case 8: playerRoom = Room8();
-        //case 9: playerRoom = Room9();
+        case 7: playerRoom = Room7(); break;
+        case 8: playerRoom = Room8(); break;
+        case 9: playerRoom = Room9(); break;
         case 0: gameOver=true; break;
     }
 } while (!gameOver);
@@ -743,8 +733,6 @@ do
 //TODO: Split displayoptions function into 2. 1 for room descript, 1 for the options.
 
 //TODO: Find a way to clean up the console output. Currently unreadable.
-
-//TODO: Complete rooms 7-9
 
 //TODO: Random event implementation
 //int GeneratePercentage ()
