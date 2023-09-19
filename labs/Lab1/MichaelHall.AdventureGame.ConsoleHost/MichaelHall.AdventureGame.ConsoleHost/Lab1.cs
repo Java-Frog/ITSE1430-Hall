@@ -109,7 +109,6 @@ static void TextPause(string message)
 
 static int Room0()
 {
-    string roomName = "No Way Back";
     string option1 ="[N] - Head North, approaching the statues.";
     string option2 = "[S] - Search the room for any other options.";
     bool roomChange = false;
@@ -180,11 +179,13 @@ static int Room1()
                 if (eventKey)
                 {
                     Console.WriteLine("You present your ticket, which is swiftly punched. The attendent grabs you by the wrist and pulls you into the passenger car. The doors snap behind you.");
+                    TextPause("Press Any Key to Continue");
                     break;
 
                 } else
                 {
                     Console.WriteLine("Ticket please! If you dont have a ticket, please make room for paying customers.");
+                    TextPause("Press Any Key to Continue");
                     break;
                 }
             }
@@ -193,7 +194,6 @@ static int Room1()
             {
                 if (Confirm("Do you exit the room using the stairs to the East? [Y/N]"))
                 {
-                    roomChange=true;
                     return 2;
                 }
                 break;
@@ -202,6 +202,7 @@ static int Room1()
             case ConsoleKey.W:
             {
                 Console.WriteLine("You approach the trash can. Like the rest of the room, it has been scrubbed clean.");
+                TextPause("Press Any Key to Continue");
                 break;
             }
 
@@ -209,7 +210,6 @@ static int Room1()
             {
                 if (Confirm("Do you take the stairs leading up and out of the station. [Y/N]"))
                 {
-                    roomChange=true;
                     return 4;
                 }
                 break;
@@ -233,23 +233,28 @@ static int Room2 ()
 {
     string roomName = "Home Room";
     string roomDescription = "You cautiously open the door and step into the room, greeted by the sight of a meticulously arranged yet slightly dusty classroom.\nWhat's your next move?";
-    string option1 = "To the [N]orth you see a wall of blackboards.";
-    string option2 = "To the [E]ast you see a sturdy wooden door leading out of the room.";
-    string option3 = "To the [W]est a door with a staircase leading leading up behind it.";
-    string option4 = "To the [S]outh there is a circular hole in the wall.";
+    string option1 = "[N]orth - You see a wall of blackboards.";
+    string option2 = "[E]ast - You see a sturdy wooden door leading out of the room.";
+    string option3 = "[W]est - A door with a staircase leading leading up behind it.";
+    string option4 = "[S]outh - There is a circular hole in the wall.";
     string roomEvent = "You can see a stick of chalk sitting on the metal edge of the blackboard.";
     bool eventKey = false;
     bool roomChange = false;
-    string chalkString = " ";
-    DisplayRoomHeader(roomDescription, roomName, 2, option1, option2, option3, option4);
+    string chalkString = "";
     do
     {
+        DisplayRoomHeader(roomDescription, roomName, 2, option1, option2, option3, option4);
         switch (Console.ReadKey(true).Key)
         {
             case ConsoleKey.N:
             {
-                if (string.IsNullOrEmpty(chalkString))
+                if (!eventKey && string.IsNullOrEmpty(chalkString))
+                {
                     Console.WriteLine("You approach the blackboard. If you had chalk, you could leave a message.");
+                    TextPause("Press Any Key to Continue.");
+                    break;
+                }
+
                 else
                     Console.WriteLine($"A message has been left on the blackboard, it reads {chalkString}");
                 if (eventKey)
@@ -318,17 +323,17 @@ static int Room3 ()
     string roomDescription = "You find yourself in an artist's studio filled with colorful canvases and splattered paint." +
         "\nSunlight streams in through large windows, illuminating the creative chaos." +
         "\nEasels, brushes, and half-finished paintings provide a glimpse into the artist's world.";
-    string option1 = "To the [N]orth the beginings of a gallery can be seen.";
-    string option2 = "To the [E]ast a wall of windows seperate you and the outside world.";
-    string option3 = "To the [W]est a door covered in faded and chipped white paint can be seen.";
-    string option4 = "To the [S]outh a closed metal industrial style door has been installed.";
+    string option1 = "[N]orth - A sparse gallery of 'art' can be seen.";
+    string option2 = "[E]ast - A wall of windows seperate you and the outside world.";
+    string option3 = "[W]est - A door covered in faded and chipped white paint can be seen.";
+    string option4 = "[S]outh - A closed metal industrial style door has been installed.";
     string roomEvent = "The room shakes and all the paintings fall from the wall.";
     bool eventKey = false;
     bool roomChange = false;
-    DisplayRoomHeader(roomDescription, roomName, 3, option1, option2, option3, option4);
     
     do
     {
+        DisplayRoomHeader(roomDescription, roomName, 3, option1, option2, option3, option4);
         switch (Console.ReadKey(true).Key)
         {
             case ConsoleKey.N:
@@ -390,17 +395,18 @@ static int Room4 ()
     string roomName = "The Observatory";
     string roomDescription = "In a high-tech observatory, state-of-the-art telescopes point toward the cosmos. Star charts and astronomical instruments line the walls. " +
         "Through a glass dome, you can see the vast night sky and the twinkling stars that seem within reach.";
-    string option1 = "To the [N]orth, the smell of anticeptic can be caught from a stairway leading down.";
-    string option2 = "To the [E]ast, you find an office door.";
-    string option3 = "To the [W]est, electronic controls and star charts line almost every inch of this wall. ";
-    string option4 = "To the [S]outh, neon lights pour in from under a closed door. ";
+    string option1 = "[N]orth- The smell of anticeptic can be caught from a stairway leading down.";
+    string option2 = "[E]ast - You find a boring old office door.";
+    string option3 = "[W]est - Electronic controls and star charts line almost every inch of this wall. ";
+    string option4 = "[S]outh - Neon lights pour in from under a closed door. ";
     string roomEvent = "A mechanical cacophony erupts from the telescope in the center of the room. ";
     bool eventKey = false;
     bool roomChange = false;
-    DisplayRoomHeader(roomDescription, roomName, 4, option1, option2, option3, option4);
+
     
     do
     {
+        DisplayRoomHeader(roomDescription, roomName, 4, option1, option2, option3, option4);
         switch (Console.ReadKey(true).Key)
         {
             case ConsoleKey.N:
@@ -463,18 +469,19 @@ static int Room5 ()
     string roomName = "Wild Bills";
     string roomDescription = "You step into a classic western saloon, complete with swinging doors and a polished wooden bar. " +
         "The room is dimly lit, and the air is thick with the aroma of aged whiskey. Empty chairs surround poker tables, and the sounds of a player piano echo in the background.";
-    string option1 = "To the [N]orth, an odd circular hole in the wall is found.";
-    string option2 = "To the [E]ast,behind the bar, a red velvet drape covers a doorway.";
-    string option3 = "To the [W]est, swinging doors are installed over an out of place office door.";
-    string option4 = "To the [S]outh, you see doors to what you imagine to be the cellar.";
+    string option1 = "[N]orth - An odd circular hole in the wall is found.";
+    string option2 = "[E]ast - Behind the bar, a red velvet drape covers a doorway.";
+    string option3 = "[W]est - Swinging doors are installed over an out of place office door.";
+    string option4 = "[S]outh - you see doors to what you imagine to be the cellar.";
     string roomEvent = "As you explore the room, the player piano abrubtly stops. The hair on the back of your neck stands up. Something or someone is watching you.";
     bool eventKey = false;
     bool roomChange = false;
-    DisplayRoomHeader(roomDescription, roomName, 5, option1, option2, option3, option4);
+   
     
     do
     {
-        if(eventKey)
+        DisplayRoomHeader(roomDescription, roomName, 5, option1, option2, option3, option4);
+        if (eventKey)
         {
             Console.WriteLine(roomEvent);
         }
@@ -536,16 +543,16 @@ static int Room6 ()
     string roomName = "The Archive";
     string roomDescription = "You enter a library filled with ancient tomes and dusty scrolls. Tall bookshelves tower overhead, their contents bearing knowledge from centuries past and places unknown. " +
         "\nMysterious symbols adorn the covers, and the air is heavy with the scent of aged paper. A sense of history and secrets permeates the room.";
-    string option1 = "To the [N]orth, a large metal sliding door latched closed.  ";
-    string option2 = "To the [E]ast, a lecturn, and a shallow shelf packed with dusty tomes.   ";
-    string option3 = "To the [W]est, velvet drapes cover an open passsage. ";
-    string option4 = "To the [S]outh, an ornate door covered with polished brass filigree.";
+    string option1 = "[N]orth - A large metal sliding door latched closed.  ";
+    string option2 = "[E]ast - A lecturn, and a shallow shelf packed with dusty tomes.   ";
+    string option3 = "[W]est - Velvet drapes cover an open passsage. ";
+    string option4 = "[S]outh - An ornate door covered with polished brass filigree.";
     string roomEvent = "As you approach the shelving, books begin to fly off the shelf, ruining whatever categorization had been performed.";
     bool eventKey = false;
     bool roomChange = false;
-    DisplayRoomHeader(roomDescription, roomName, 6, option1, option2, option3, option4);
     do
     {
+        DisplayRoomHeader(roomDescription, roomName, 6, option1, option2, option3, option4);
         switch (Console.ReadKey(true).Key)
         {
             case ConsoleKey.N:
@@ -607,17 +614,17 @@ static int Room7 ()
     string roomName = "Eurus St.";
     string roomDescription = "You enter a narrow, neon-lit alleyway in a futuristic cyberpunk city. " +
         "\nHolographic billboards illuminate the surroundings, casting a vibrant glow on the grimy walls. Hovering drones whir above, and the air is filled with the faint hum of technology.";
-    string option1 = "To the [N]orth, a door with a plaque that reads 'Observatory'.";
-    string option2 = "To the [E]ast, an open set of sidewalk cellar doors.";
-    string option3 = "To the [W]est, a digital bill board flickers to life.";
-    string option4 = "To the [S]outh, wind blows through an empty public transit station. ";
+    string option1 = "[N]orth - A door with a plaque that reads 'Observatory'.";
+    string option2 = "[E]ast - An open set of sidewalk cellar doors.";
+    string option3 = "[W]est - A digital bill board flickers to life.";
+    string option4 = "[S]outh - Wind blows through an empty public transit station. ";
     string roomEvent = "An oddly familiar train barrels through the transit station.";
     bool eventKey = false;
     bool roomChange = false;
-    DisplayRoomHeader(roomDescription, roomName, 7, option1, option2, option3, option4);
     
     do
     {
+        DisplayRoomHeader(roomDescription, roomName, 7, option1, option2, option3, option4);
         switch (Console.ReadKey(true).Key)
         {
             case ConsoleKey.N:
@@ -669,16 +676,17 @@ static int Room8 ()
     string roomName = "The Safe House";
     string roomDescription = "Descending into an underground bunker, you discover a hidden world of espionage. " +
         "Dimly lit rooms contain vintage radio equipment, maps with cryptic markings, and rows of surveillance monitors. The air is tense with the weight of classified secrets.";
-    string option1 = "To the [N]orth, the faint sounds of a piano can be heard from up a narrow set of stairs.";
-    string option2 = "To the [E]ast, a dark and cobwebbed filled tunnel welcomes you.";
-    string option3 = "To the [W]est, a technicolor stream of light poors down a metal staircase.";
-    string option4 = "To the [S]outh, a wall of CRT monitors, reel-to-reel recorders and a cluttered table.";
+    string option1 = "[N]orth - The faint sounds of a piano can be heard from up a narrow set of stairs.";
+    string option2 = "[E]ast - A dark and cobwebbed filled tunnel welcomes you.";
+    string option3 = "[W]est - A technicolor stream of light poors down a metal staircase.";
+    string option4 = "[S]outh - A wall of CRT monitors, reel-to-reel recorders and a cluttered table.";
     string roomEvent = "The monitors along the South wall being to count down. 3....2....1....0. Whatever it was counting down to must not have been important.";
     bool eventKey = false;
     bool roomChange = false;
-    DisplayRoomHeader(roomDescription, roomName, 8, option1, option2, option3, option4);
+    
     do
     {
+        DisplayRoomHeader(roomDescription, roomName, 8, option1, option2, option3, option4);
         switch (Console.ReadKey(true).Key)
         {
             case ConsoleKey.N:
@@ -734,16 +742,17 @@ static int Room9 ()
     string roomName = "Clock & Key Co.";
     string roomDescription = "In a quaint clockmaker's workshop, antique timepieces line the shelves. " +
         "The room is filled with the rhythmic ticking and chiming of various clocks. Gears and cogs are meticulously arranged on workbenches, and a grandfather clock stands tall in the corner.";
-    string option1 = "To the [N]orth, a sturdy wooden door sits closed.";
-    string option2 = "To the [E]ast, display cases line a store front window.";
-    string option3 = "To the [W]est, a beaded doorway, with a sign reading 'Employee's Only'.";
-    string option4 = "To the [S]outh, an assortment of delicate tools and a complicated mechanisms rest on a thick oak table.";
+    string option1 = "[N]orth - A sturdy wooden door sits closed.";
+    string option2 = "[E]ast - Display cases line a store front window.";
+    string option3 = "[W]est - A beaded doorway, with a sign reading 'Employee's Only'.";
+    string option4 = "[S]outh - An assortment of delicate tools and a complicated mechanisms rest on a thick oak table.";
     string roomEvent = "Suddenly, all the clocks chime at once, catching you off guard as you hastily cover your ears to shield yourself from the unexpected cacophonous sound.";
     bool eventKey = false;
     bool roomChange = false;
-    DisplayRoomHeader(roomDescription, roomName, 9, option1, option2, option3, option4);
+    
     do
     {
+        DisplayRoomHeader(roomDescription, roomName, 9, option1, option2, option3, option4);
         switch (Console.ReadKey(true).Key)
         {
             case ConsoleKey.N:
@@ -799,9 +808,7 @@ static void DisplayRoomHeader(string roomDescription, string roomName, int roomN
     Console.WriteLine("".PadLeft(85, '-'));
     Console.WriteLine(roomDescription);
     Console.WriteLine("".PadLeft(85, '-'));
-    Console.WriteLine("What do you do?");
 
-    DisplayOptions(option1, option2, option3, option4);
     Console.WriteLine("Player Location");
     switch (roomNumber)
     {
@@ -818,45 +825,104 @@ static void DisplayRoomHeader(string roomDescription, string roomName, int roomN
         }
         case 2:
         {
-            Console.WriteLine("_____________\n| 1 | X | 3 |\n_____________\n| 4 | 5 | 6 |\n_____________\n| 7 | 8 | 9 |\n_____________\n"); break;
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | X | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            break;
         }
         case 3:
         {
-            Console.WriteLine("_____________\n| 1 | 2 | X |\n_____________\n| 4 | 5 | 6 |\n_____________\n| 7 | 8 | 9 |\n_____________\n"); break;
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | X |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            break;
         }
         case 4:
         {
-            Console.WriteLine("_____________\n| 1 | 2 | 3 |\n_____________\n| X | 5 | 6 |\n_____________\n| 7 | 8 | 9 |\n_____________\n"); break;
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| X | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            break;
         }
         case 5:
         {
-            Console.WriteLine("_____________\n| P | 2 | 3 |\n_____________\n| 4 | X | 6 |\n_____________\n| 7 | 8 | 9 |\n_____________\n"); break;
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | X | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            break;
         }
         case 6:
         {
-            Console.WriteLine("_____________\n| P | 2 | 3 |\n_____________\n| 4 | 5 | X |\n_____________\n| 7 | 8 | 9 |\n_____________\n"); break;
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | X |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            break;
         }
         case 7:
         {
-            Console.WriteLine("_____________\n| P | 2 | 3 |\n_____________\n| 4 | 5 | 6 |\n_____________\n| X | 8 | 9 |\n_____________\n"); break;
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| X | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            break;
         }
         case 8:
         {
-            Console.WriteLine("_____________\n| P | 2 | 3 |\n_____________\n| 4 | 5 | 6 |\n_____________\n| 7 | X | 9 |\n_____________\n"); break;
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | X | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            break;
         }
         case 9:
         {
-            Console.WriteLine("_____________\n| P | 2 | 3 |\n_____________\n| 4 | 5 | 6 |\n_____________\n| 7 | 8 | X |\n_____________\n"); break;
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | - |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            Console.WriteLine("| - | - | X |");
+            Console.WriteLine("".PadLeft(13, '-'));
+            break;
         }
     }
     Console.WriteLine("".PadLeft(45, '-'));
-    Console.ResetColor();
+
+    DisplayOptions(option1, option2, option3, option4);
 
 }
 
 static void DisplayOptions(string option1, string option2, string option3, string option4)
 {
-    Console.ForegroundColor = ConsoleColor.Green;
+    Console.ResetColor();
+    Console.ForegroundColor = ConsoleColor.DarkGray;
+    Console.WriteLine("What do you do?");
     Console.WriteLine("".PadLeft(40, '-'));
     Console.WriteLine(option1 + "\n" + option2 + "\n" +option3+ "\n" +option4 + "\n[Q]uit");
     Console.WriteLine("".PadLeft(40, '-'));
@@ -880,29 +946,31 @@ Console.WindowWidth = 100;
     Room0();
 SmallWelcomeScreen();
     playerRoom=1;
-    do
+do
+{
+    switch (playerRoom)
     {
-        switch (playerRoom)
+        case 1: playerRoom = Room1(); break;
+        case 2: playerRoom = Room2(); break;
+        case 3: playerRoom = Room3(); break;
+        case 4: playerRoom = Room4(); break;
+        case 5: playerRoom = Room5(); break;
+        case 6: playerRoom = Room6(); break;
+        case 7: playerRoom = Room7(); break;
+        case 8: playerRoom = Room8(); break;
+        case 9: playerRoom = Room9(); break;
+        case 0:
         {
-            case 1: playerRoom = Room1(); break;
-            case 2: playerRoom = Room2(); break;
-            case 3: playerRoom = Room3(); break;
-            case 4: playerRoom = Room4(); break;
-            case 5: playerRoom = Room5(); break;
-            case 6: playerRoom = Room6(); break;
-            case 7: playerRoom = Room7(); break;
-            case 8: playerRoom = Room8(); break;
-            case 9: playerRoom = Room9(); break;
-            case 0: gameOver=true; break;
+            gameOver=true;
+            Console.ResetColor();
+            break;
         }
-    } while (!gameOver);
+    }
+
+} while (!gameOver);
 
 
 
-
-//TODO: Split displayoptions function into 2. 1 for room descript, 1 for the options.
-
-//TODO: Find a way to clean up the console output. Currently unreadable.
 
 //TODO: Random event implementation
 //int GeneratePercentage ()
@@ -910,11 +978,6 @@ SmallWelcomeScreen();
 //    return Random.Shared.Next(1, 101);
 //}
 
-//TODO: Add room placement message
-
-//TODO: Add exit option to each room
-
-//TODO:Rethink the player tracking.
 
 //TODO: Double check code style from project instructions.
 //do NOT recursively call the game loop, double check for spelling errors
