@@ -1,145 +1,160 @@
-﻿// Movie data:
-//  Title, genre, description, mpaa rating
-//  Length, release year, budget
-//  IsBlackAndWhite
-// Operations: Add, edit, view, delete
+﻿/*
+* ITSE 1430
+* Fall 2023
+* 
+* Sample movie library
+*/
+using MovieLibrary;
+namespace MovieLibrary.ConsoleHost;
 
-using System.Collections.Specialized;
-using System.Data;
-
-string title = "", description = "";
-//title = "";
-string genre = "", rating = "";
-
-int length = 0, releaseYear = 1900;
-
-decimal budget = 125.45M;
-bool isBlackAndWhite = false;
-
-
-//Entry Point
-var done = false;
-do
+partial class Program
 {
-    switch (DisplayMenu()) 
-        //Switch statements Only works when comparing the exact same value against different results. IE, the returned value from the DisplayMenu() function
-        //No fallthrough on C# switch statements. requires break; , or return statement if in a function, after every case statement
+    static void Main()
     {
-        case 1: AddMovie(); break;
-        case 2: EditMovie(); break;
-        case 3: DeleteMovie(); break;
-        case 4: ViewMovie(); break;
-        case 0:
-        {
-            //can use code blocks in switch statements
-            done = true; 
-            break;
-        }
-        default: Console.WriteLine("Invalid Selection"); break;
+        var app = new Program();
+        app.Run();
     }
-} while (!done);
 
+    void Run ()
+    { 
+        //TODO: Remove this
+        Movie movie = new Movie();
 
+        //Entry point
+        var done = false;
+        do
+        {
+            switch (DisplayMenu())
+            {
+                case MenuCommand.Add: movie = AddMovie(); break;
+                case MenuCommand.Edit: EditMovie(); break;
+                case MenuCommand.Delete:
+                {
+                    //TODO: Clean this up
+                    if (DeleteMovie(movie))
+                        movie = new Movie();
+                    break;
+                };
+                case MenuCommand.View: ViewMovie(movie); break;
+                case MenuCommand.Quit:
+                {
+                    done = true;
+                    break;
+                };
 
-
-
+                default: Console.WriteLine("Unknown option"); break;
+            };
+        } while (!done);
+    }
 /// Functions
-
-void EditMovie ()
+MenuCommand DisplayMenu ()
 {
-    Console.WriteLine("Not Implemented");
-}
-
-void DeleteMovie()
-{
-    if (String.IsNullOrEmpty(title))
-        return;
-    if (!Confirm($"Are you sure you want to delete the movie '{title}' ? (Y/N): "))
-        return;
-    title = "";
-}
-int DisplayMenu ()
-{
-    Console.WriteLine("".PadLeft(10, '-'));
+    Console.WriteLine("-----------");
     Console.WriteLine("A)dd Movie");
     Console.WriteLine("E)dit Movie");
     Console.WriteLine("D)elete Movie");
     Console.WriteLine("V)iew Movie");
     Console.WriteLine("Q)uit");
-    Console.WriteLine("".PadLeft(10, '-'));
 
     do
     {
-        //var input = Console.ReadLine();
-        //if (input == "A" || input =="a")
-        //    return 1;
-        //else if (input == "E" ||input =="e")
-        //    return 2;
-        //else if (input == "D"||input =="d")
-        //    return 3;
-        //else if (input == "V"||input =="v")
-        //    return 4;
-        //else if (input == "Q"||input == "q")
-        //    return 0;
-
         switch (Console.ReadKey(true).Key)
         {
-            case ConsoleKey.A: return 1;
-            case ConsoleKey.E: return 2;
-            case ConsoleKey.D: return 3;
-            case ConsoleKey.V: return 4;
-            case ConsoleKey.Q: return 0;
-        }
-
+            case ConsoleKey.A: return MenuCommand.Add;
+            case ConsoleKey.E: return MenuCommand.Edit;
+            case ConsoleKey.D: return MenuCommand.Delete;
+            case ConsoleKey.V: return MenuCommand.View;
+            case ConsoleKey.Q: return MenuCommand.Quit;
+        };
     } while (true);
 }
-void AddMovie ()
+
+//Get a new movie
+Movie AddMovie ()
 {
-    title = ReadString("Enter a title: ", true);
-    description = ReadString("Enter a description: ", false);
+    var movie = new Movie();
 
-    length = ReadInt("Enter the run length (in mins): ", 0);
-    releaseYear = ReadInt("Enter the release year: ", 1900);
-
-    genre = ReadString("Enter a genre: ", false);
-    rating = ReadRating("Enter a rating: ");
-
-    isBlackAndWhite = ReadBoolean("Black and White (Y/N)?");
-}
-
-void ViewMovie ()
-{
-    Console.WriteLine("".PadLeft(10,'-'));
-    if(String.IsNullOrEmpty(title))
+    do
     {
-        Console.WriteLine("No movies available.");
-        return;
-    }
-    Console.WriteLine(title);
- 
-    //Run Length: ## mins
-    Console.WriteLine($"Run Length: {length} mins");
+        movie.Title = ReadString("Enter a title: ", true);
+        movie.Description = ReadString("Enter a description: ", false);
 
-    //Released yyyy
-    Console.WriteLine($"Released: {releaseYear}");
+        movie.Length = ReadInt("Enter the run length (in mins): ", 0);
+        movie.ReleaseYear = ReadInt("Enter the release year: ", 1900);
 
-    Console.WriteLine(genre);
+        movie.Genre = ReadString("Enter a genre: ", false);
+        movie.Rating = ReadRating("Enter a rating: ");
 
-    //MPAA Rating: 
-    Console.WriteLine($"MPAA Rating: {rating} ");
+        movie.IsBlackAndWhite = ReadBoolean("Black and White (Y/N)?");
 
-    //V2
-    string format = isBlackAndWhite ? "Black and White" : "Color";
-    Console.WriteLine("Format: " + format);
+        var error = movie.Validate();
+        if (String.IsNullOrEmpty(error))
+            return movie;
 
-    //V3
-    //Console.WriteLine("Format: " + (isBlackAndWhite ? "Black and White" : "Color"));
-
-    Console.WriteLine(description);
-    Console.WriteLine("".PadLeft(10, '-'));
+        Console.WriteLine($"Error: {error}");
+    } while (true);
 }
 
-bool ReadBoolean (string message )
+void EditMovie ()
+{
+    Console.WriteLine("Not implemented yet");
+}
+
+bool DeleteMovie ( Movie movie )
+{
+    if (String.IsNullOrEmpty(movie.Title))
+        return false;
+
+    if (!Confirm($"Are you sure you want to delete the movie '{movie.Title}' (Y/N)?"))
+        return false;
+
+    //TODO: Delete movie
+    //title = "";
+    return true;
+}
+
+//Display the movie details
+void ViewMovie ( Movie movie )
+{
+    if (String.IsNullOrEmpty(movie.Title))
+    {
+        Console.WriteLine("No movies available");
+        return;
+    };
+
+    Console.WriteLine();
+    Console.WriteLine("".PadLeft(15, '-'));
+
+    Console.WriteLine(movie.Title);
+
+    string message = $"Run Length: {movie.Length} mins";
+    Console.WriteLine(message);
+        if (movie.NeedsIntermission)
+            Console.WriteLine("Needs Intermission.");
+
+    Console.WriteLine($"Released {movie.ReleaseYear}");
+    Console.WriteLine(movie.Genre);
+    Console.WriteLine($"MPAA Rating: {movie.Rating}");
+
+    string format = movie.IsBlackAndWhite ? "Black and White" : "Color";
+    Console.WriteLine("Format: ".PadLeft(10) + format);
+
+    Console.WriteLine(movie.Description);
+}
+
+bool Confirm ( string message )
+{
+    return ReadBoolean(message);
+}
+
+//Functions run in isolation
+// Parameters - Getting data into a function
+// Return type - Getting data out of a function
+
+///<summary>Reads a boolean value.</summary>
+///<param name="message">Message to show.</param>
+///<returns>Returns true if the value was true or false otherwise.</returns>
+bool ReadBoolean ( string message )
 {
     Console.WriteLine(message);
 
@@ -152,15 +167,16 @@ bool ReadBoolean (string message )
         //    return true;
         //else if (value == "N" || value == "n")  // value == "N" || "n"
         //    return false;
-
-        switch (Console.ReadKey(true).Key) //ReadKey(true) keeps the key  entered from being displayed in the console
-            //Alternative input command, reads only 1 character from the keyboard, no need for the enter key
-            //ConsoleKey.Key removes the upper and lowercase, returns value of the key pressed on the keyboard. ConsoleKey.* is needed to check the value
+        switch (Console.ReadKey(true).Key)
         {
+            //case "Y":
+            //case "y": return true;
             case ConsoleKey.Y: return true;
-            case ConsoleKey.N: return false;
-        }
 
+            case ConsoleKey.N: return false;
+            //case "N":
+            //case "n": return false;            
+        };
 
         //Console.WriteLine("Please enter Y/N");
 
@@ -174,19 +190,15 @@ bool ReadBoolean (string message )
     };
 }
 
-bool Confirm (string message )
-{
-    return ReadBoolean(message);
-}
-
-int ReadInt (string message, int minimumValue )
+int ReadInt ( string message, int minimumValue )
 {
     Console.WriteLine(message);
 
     do
     {
         string value = Console.ReadLine();
-        if (Int32.TryParse(value, out var result)) //inline declaration
+
+        if (Int32.TryParse(value, out var result))
             if (result >= minimumValue)
                 return result;
 
@@ -194,7 +206,29 @@ int ReadInt (string message, int minimumValue )
     } while (true);
 }
 
-string ReadString (string message, bool isRequired )
+string ReadRating ( string message )
+{
+    Console.WriteLine(message);
+
+    do
+    {
+        string value = Console.ReadLine();
+        if (String.Equals(value, "PG", StringComparison.CurrentCultureIgnoreCase))
+            return "PG";
+        else if (String.Equals(value, "G", StringComparison.CurrentCultureIgnoreCase))
+            return "G";
+        else if (String.Equals(value, "PG-13", StringComparison.CurrentCultureIgnoreCase))
+            return "PG-13";
+        else if (String.Equals(value, "R", StringComparison.CurrentCultureIgnoreCase))
+            return "R";
+        else if (String.IsNullOrEmpty(value))
+            return "";
+
+        Console.WriteLine("Invalid rating");
+    } while (true);
+}
+
+string ReadString ( string message, bool isRequired )
 {
     Console.WriteLine(message);
 
@@ -204,37 +238,8 @@ string ReadString (string message, bool isRequired )
 
         if (!isRequired || !String.IsNullOrEmpty(value))
             return value;
-        //if (!isRequired)
-        //    return value;
-
-        ////Is it empty?
-        //if (value != "")
-        //    return value;
 
         Console.WriteLine("Value is required");
     } while (true);
 }
-
-string ReadRating (string message)
-{
-    Console.WriteLine(message);
-
-    do
-    {
-        
-        string value = Console.ReadLine();
-
-        if (String.Equals(value, "PG", StringComparison.CurrentCultureIgnoreCase))
-            return "PG";
-        else if (String.Equals(value, "G", StringComparison.CurrentCultureIgnoreCase))
-            return "G";
-        else if (String.Equals(value, "PG-13", StringComparison.CurrentCultureIgnoreCase))
-            return "PG-13";
-        else if (String.Equals(value, "R", StringComparison.CurrentCultureIgnoreCase))
-            return "R";
-        else if (String.IsNullOrEmpty(value)) //empty string can also be shown as  value == String.Empty String.IsNullOrEmpty() is the way to check for empty strings
-            return "";
-
-        Console.WriteLine("Invalid Rating");
-    } while (true);
 }

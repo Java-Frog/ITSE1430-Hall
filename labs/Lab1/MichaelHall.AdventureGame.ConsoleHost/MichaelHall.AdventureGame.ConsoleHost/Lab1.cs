@@ -23,6 +23,8 @@ static void BigWelcomeScreen()
             |   ,.'                   `---`              |   |.'             ;   |,'     
             '---'                                        `---'               '---'                                                                    
 ");
+    Console.WriteLine("Made By: Michael Hall");
+    Console.WriteLine("Class: ITSE 1234, Fall 2023");
     Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine("WELCOME TO THE WORLD OF".PadLeft(Console.WindowWidth/2+10));
     Console.WriteLine("".PadLeft(Console.WindowWidth, '-'));
