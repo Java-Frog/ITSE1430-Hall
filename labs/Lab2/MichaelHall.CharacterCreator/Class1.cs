@@ -5,10 +5,6 @@
  * Due Oct 10, 2024
  */
 
-
-using System;
-using System.Collections.Generic;
-
 namespace MichaelHall.CharacterCreator
 {
     public class Character
@@ -75,7 +71,6 @@ namespace MichaelHall.CharacterCreator
         /// </summary>
         public Character()
         {
-            // Default constructor
             MinStatValue = 1;
             MaxStatValue = 100;
         }
