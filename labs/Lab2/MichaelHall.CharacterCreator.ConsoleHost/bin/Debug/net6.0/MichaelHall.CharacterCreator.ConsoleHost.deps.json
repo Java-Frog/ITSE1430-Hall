@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MichaelHall.CharacterCreator.ConsoleHost/1.0.0": {
+        "dependencies": {
+          "MichaelHall.CharacterCreator": "1.0.0"
+        },
+        "runtime": {
+          "MichaelHall.CharacterCreator.ConsoleHost.dll": {}
+        }
+      },
+      "MichaelHall.CharacterCreator/1.0.0": {
+        "runtime": {
+          "MichaelHall.CharacterCreator.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MichaelHall.CharacterCreator.ConsoleHost/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MichaelHall.CharacterCreator/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
