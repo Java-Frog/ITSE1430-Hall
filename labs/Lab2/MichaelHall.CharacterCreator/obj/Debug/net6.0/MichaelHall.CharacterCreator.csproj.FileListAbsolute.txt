@@ -1,0 +1,11 @@
+C:\Users\Sendr\Desktop\Lab2\Lab2\MichaelHall.CharacterCreator\bin\Debug\net6.0\MichaelHall.CharacterCreator.deps.json
+C:\Users\Sendr\Desktop\Lab2\Lab2\MichaelHall.CharacterCreator\bin\Debug\net6.0\MichaelHall.CharacterCreator.dll
+C:\Users\Sendr\Desktop\Lab2\Lab2\MichaelHall.CharacterCreator\bin\Debug\net6.0\MichaelHall.CharacterCreator.pdb
+C:\Users\Sendr\Desktop\Lab2\Lab2\MichaelHall.CharacterCreator\obj\Debug\net6.0\MichaelHall.CharacterCreator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sendr\Desktop\Lab2\Lab2\MichaelHall.CharacterCreator\obj\Debug\net6.0\MichaelHall.CharacterCreator.AssemblyInfoInputs.cache
+C:\Users\Sendr\Desktop\Lab2\Lab2\MichaelHall.CharacterCreator\obj\Debug\net6.0\MichaelHall.CharacterCreator.AssemblyInfo.cs
+C:\Users\Sendr\Desktop\Lab2\Lab2\MichaelHall.CharacterCreator\obj\Debug\net6.0\MichaelHall.CharacterCreator.csproj.CoreCompileInputs.cache
+C:\Users\Sendr\Desktop\Lab2\Lab2\MichaelHall.CharacterCreator\obj\Debug\net6.0\MichaelHall.CharacterCreator.dll
+C:\Users\Sendr\Desktop\Lab2\Lab2\MichaelHall.CharacterCreator\obj\Debug\net6.0\refint\MichaelHall.CharacterCreator.dll
+C:\Users\Sendr\Desktop\Lab2\Lab2\MichaelHall.CharacterCreator\obj\Debug\net6.0\MichaelHall.CharacterCreator.pdb
+C:\Users\Sendr\Desktop\Lab2\Lab2\MichaelHall.CharacterCreator\obj\Debug\net6.0\ref\MichaelHall.CharacterCreator.dll
