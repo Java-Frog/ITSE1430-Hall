@@ -6,36 +6,59 @@ namespace MovieLibrary.WinHost
         {
             InitializeComponent();
         }
-        private Movie _movie;
+        private Movie _movie = new Movie() { Title = "Jaws" };
 
-        private void exitToolStripMenuItem_Click ( object sender, EventArgs e )
+        private void OnFileExit ( object sender, EventArgs e )
         {
-            MessageBox.Show("Exit Not Implemented");
+            Close();
         }
 
-        private void helpToolStripMenuItem_Click ( object sender, EventArgs e )
+        private void OnHelpClick ( object sender, EventArgs e )
         {
-            MessageBox.Show("Help Not Implemented");
         }
 
         private void OnAddMovie ( object sender, EventArgs e )
         {
-            MessageBox.Show("Add Not Implemented");
+            var dlg = new MovieForm();
+            dlg.ShowDialog();
         }
 
-        private void editToolStripMenuItem_Click ( object sender, EventArgs e )
+        private void OnEditMovie ( object sender, EventArgs e )
         {
             MessageBox.Show("Edit Not Implemented");
         }
 
-        private void deleteToolStripMenuItem_Click ( object sender, EventArgs e )
+        private void OnDeleteMovie ( object sender, EventArgs e )
         {
-            MessageBox.Show("Delete Not Implemented");
+            var movie = GetSelectedMovie();
+            if (movie == null)
+                return;
+
+            if (!Confirm("Delete",$"Are you sure you want to delete '{movie.Title}'?"))
+                return;
+            //TODO Delete movie
+            _movie = null;
         }
 
         private void aboutToolStripMenuItem_Click ( object sender, EventArgs e )
         {
 
         }
+        private void OnHelpAbout ( object sender, EventArgs e )
+        {
+            var about = new AboutBox();
+            about.ShowDialog(); //Shows a form to the user
+
+        }
+
+        private Movie GetSelectedMovie()
+        {
+            return _movie;
+        }
+        private bool Confirm(string title, string message)
+        {
+            return MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
     }
+
 }

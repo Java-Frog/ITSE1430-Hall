@@ -78,9 +78,9 @@
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name="exitToolStripMenuItem";
-            exitToolStripMenuItem.Size=new Size(184, 44);
+            exitToolStripMenuItem.Size=new Size(359, 44);
             exitToolStripMenuItem.Text="Exit";
-            exitToolStripMenuItem.Click+=exitToolStripMenuItem_Click;
+            exitToolStripMenuItem.Click+=OnFileExit;
             // 
             // moviesToolStripMenuItem
             // 
@@ -93,7 +93,7 @@
             // 
             addToolStripMenuItem.Name="addToolStripMenuItem";
             addToolStripMenuItem.ShortcutKeys=Keys.Insert;
-            addToolStripMenuItem.Size=new Size(359, 44);
+            addToolStripMenuItem.Size=new Size(276, 44);
             addToolStripMenuItem.Text="&Add";
             addToolStripMenuItem.Click+=OnAddMovie;
             // 
@@ -101,17 +101,17 @@
             // 
             editToolStripMenuItem.Name="editToolStripMenuItem";
             editToolStripMenuItem.ShortcutKeys=Keys.Alt|Keys.Insert;
-            editToolStripMenuItem.Size=new Size(359, 44);
+            editToolStripMenuItem.Size=new Size(276, 44);
             editToolStripMenuItem.Text="&Edit";
-            editToolStripMenuItem.Click+=editToolStripMenuItem_Click;
+            editToolStripMenuItem.Click+=OnEditMovie;
             // 
             // deleteToolStripMenuItem
             // 
             deleteToolStripMenuItem.Name="deleteToolStripMenuItem";
             deleteToolStripMenuItem.ShortcutKeys=Keys.Delete;
-            deleteToolStripMenuItem.Size=new Size(359, 44);
+            deleteToolStripMenuItem.Size=new Size(276, 44);
             deleteToolStripMenuItem.Text="&Delete";
-            deleteToolStripMenuItem.Click+=deleteToolStripMenuItem_Click;
+            deleteToolStripMenuItem.Click+=OnDeleteMovie;
             // 
             // helpToolStripMenuItem
             // 
@@ -119,15 +119,15 @@
             helpToolStripMenuItem.Name="helpToolStripMenuItem";
             helpToolStripMenuItem.Size=new Size(84, 38);
             helpToolStripMenuItem.Text="&Help";
-            helpToolStripMenuItem.Click+=helpToolStripMenuItem_Click;
+            helpToolStripMenuItem.Click+=OnHelpClick;
             // 
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name="aboutToolStripMenuItem";
             aboutToolStripMenuItem.ShortcutKeys=Keys.F1;
-            aboutToolStripMenuItem.Size=new Size(251, 44);
+            aboutToolStripMenuItem.Size=new Size(359, 44);
             aboutToolStripMenuItem.Text="&About";
-            aboutToolStripMenuItem.Click+=aboutToolStripMenuItem_Click;
+            aboutToolStripMenuItem.Click+=OnHelpAbout;
             // 
             // MainForm
             // 
