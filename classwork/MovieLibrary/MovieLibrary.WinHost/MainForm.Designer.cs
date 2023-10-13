@@ -40,13 +40,14 @@
             deleteToolStripMenuItem=new ToolStripMenuItem();
             helpToolStripMenuItem=new ToolStripMenuItem();
             aboutToolStripMenuItem=new ToolStripMenuItem();
+            _lstMovies=new ListBox();
             _mainMenu.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize=new Size(32, 32);
-            menuStrip1.Location=new Point(0, 42);
+            menuStrip1.Location=new Point(0, 40);
             menuStrip1.Name="menuStrip1";
             menuStrip1.Size=new Size(830, 24);
             menuStrip1.TabIndex=0;
@@ -64,7 +65,7 @@
             _mainMenu.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, moviesToolStripMenuItem, helpToolStripMenuItem });
             _mainMenu.Location=new Point(0, 0);
             _mainMenu.Name="_mainMenu";
-            _mainMenu.Size=new Size(830, 42);
+            _mainMenu.Size=new Size(830, 40);
             _mainMenu.TabIndex=2;
             _mainMenu.Text="menuStrip2";
             // 
@@ -72,13 +73,13 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exitToolStripMenuItem });
             fileToolStripMenuItem.Name="fileToolStripMenuItem";
-            fileToolStripMenuItem.Size=new Size(71, 38);
+            fileToolStripMenuItem.Size=new Size(71, 36);
             fileToolStripMenuItem.Text="&File";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name="exitToolStripMenuItem";
-            exitToolStripMenuItem.Size=new Size(359, 44);
+            exitToolStripMenuItem.Size=new Size(184, 44);
             exitToolStripMenuItem.Text="Exit";
             exitToolStripMenuItem.Click+=OnFileExit;
             // 
@@ -86,7 +87,7 @@
             // 
             moviesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addToolStripMenuItem, editToolStripMenuItem, deleteToolStripMenuItem });
             moviesToolStripMenuItem.Name="moviesToolStripMenuItem";
-            moviesToolStripMenuItem.Size=new Size(111, 38);
+            moviesToolStripMenuItem.Size=new Size(111, 36);
             moviesToolStripMenuItem.Text="&Movies";
             // 
             // addToolStripMenuItem
@@ -117,7 +118,7 @@
             // 
             helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
             helpToolStripMenuItem.Name="helpToolStripMenuItem";
-            helpToolStripMenuItem.Size=new Size(84, 38);
+            helpToolStripMenuItem.Size=new Size(84, 36);
             helpToolStripMenuItem.Text="&Help";
             helpToolStripMenuItem.Click+=OnHelpClick;
             // 
@@ -125,9 +126,18 @@
             // 
             aboutToolStripMenuItem.Name="aboutToolStripMenuItem";
             aboutToolStripMenuItem.ShortcutKeys=Keys.F1;
-            aboutToolStripMenuItem.Size=new Size(359, 44);
+            aboutToolStripMenuItem.Size=new Size(251, 44);
             aboutToolStripMenuItem.Text="&About";
             aboutToolStripMenuItem.Click+=OnHelpAbout;
+            // 
+            // _lstMovies
+            // 
+            _lstMovies.FormattingEnabled=true;
+            _lstMovies.ItemHeight=32;
+            _lstMovies.Location=new Point(12, 67);
+            _lstMovies.Name="_lstMovies";
+            _lstMovies.Size=new Size(806, 548);
+            _lstMovies.TabIndex=3;
             // 
             // MainForm
             // 
@@ -135,6 +145,7 @@
             AutoScaleMode=AutoScaleMode.Font;
             BackColor=SystemColors.Control;
             ClientSize=new Size(830, 629);
+            Controls.Add(_lstMovies);
             Controls.Add(menuStrip1);
             Controls.Add(_mainMenu);
             Font=new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -161,5 +172,6 @@
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private ListBox _lstMovies;
     }
 }

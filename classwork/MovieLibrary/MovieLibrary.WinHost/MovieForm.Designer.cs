@@ -54,7 +54,7 @@
             // 
             // _btnSave
             // 
-            _btnSave.Location=new Point(638, 381);
+            _btnSave.Location=new Point(751, 619);
             _btnSave.Name="_btnSave";
             _btnSave.Size=new Size(150, 46);
             _btnSave.TabIndex=1;
@@ -64,7 +64,7 @@
             // 
             // _btnCancel
             // 
-            _btnCancel.Location=new Point(404, 381);
+            _btnCancel.Location=new Point(1029, 619);
             _btnCancel.Name="_btnCancel";
             _btnCancel.Size=new Size(150, 46);
             _btnCancel.TabIndex=2;
@@ -74,18 +74,20 @@
             // 
             // _cbRating
             // 
+            _cbRating.DropDownStyle=ComboBoxStyle.DropDownList;
             _cbRating.FormattingEnabled=true;
             _cbRating.Items.AddRange(new object[] { "G", "PG", "PG-13", "R" });
-            _cbRating.Location=new Point(520, 66);
+            _cbRating.Location=new Point(195, 329);
             _cbRating.Name="_cbRating";
             _cbRating.Size=new Size(242, 40);
             _cbRating.TabIndex=3;
             // 
             // _txtDescription
             // 
-            _txtDescription.Location=new Point(195, 147);
+            _txtDescription.Location=new Point(689, 52);
+            _txtDescription.Multiline=true;
             _txtDescription.Name="_txtDescription";
-            _txtDescription.Size=new Size(200, 39);
+            _txtDescription.Size=new Size(500, 312);
             _txtDescription.TabIndex=4;
             // 
             // _txtReleaseYear
@@ -97,7 +99,7 @@
             // 
             // _txtRunLength
             // 
-            _txtRunLength.Location=new Point(195, 213);
+            _txtRunLength.Location=new Point(195, 163);
             _txtRunLength.Name="_txtRunLength";
             _txtRunLength.Size=new Size(200, 39);
             _txtRunLength.TabIndex=6;
@@ -105,7 +107,7 @@
             // _chkIsBlackAndWhite
             // 
             _chkIsBlackAndWhite.AutoSize=true;
-            _chkIsBlackAndWhite.Location=new Point(521, 220);
+            _chkIsBlackAndWhite.Location=new Point(27, 575);
             _chkIsBlackAndWhite.Name="_chkIsBlackAndWhite";
             _chkIsBlackAndWhite.Size=new Size(252, 36);
             _chkIsBlackAndWhite.TabIndex=7;
@@ -114,7 +116,7 @@
             // 
             // _txtGenre
             // 
-            _txtGenre.Location=new Point(195, 279);
+            _txtGenre.Location=new Point(195, 238);
             _txtGenre.Name="_txtGenre";
             _txtGenre.Size=new Size(200, 39);
             _txtGenre.TabIndex=8;
@@ -140,7 +142,7 @@
             // label3
             // 
             label3.AutoSize=true;
-            label3.Location=new Point(27, 154);
+            label3.Location=new Point(879, 17);
             label3.Name="label3";
             label3.Size=new Size(135, 32);
             label3.TabIndex=11;
@@ -149,7 +151,7 @@
             // label4
             // 
             label4.AutoSize=true;
-            label4.Location=new Point(25, 220);
+            label4.Location=new Point(27, 163);
             label4.Name="label4";
             label4.Size=new Size(137, 32);
             label4.TabIndex=12;
@@ -158,7 +160,7 @@
             // label5
             // 
             label5.AutoSize=true;
-            label5.Location=new Point(27, 286);
+            label5.Location=new Point(27, 238);
             label5.Name="label5";
             label5.Size=new Size(78, 32);
             label5.TabIndex=13;
@@ -167,7 +169,7 @@
             // label6
             // 
             label6.AutoSize=true;
-            label6.Location=new Point(596, 21);
+            label6.Location=new Point(25, 332);
             label6.Name="label6";
             label6.Size=new Size(82, 32);
             label6.TabIndex=14;
@@ -177,7 +179,7 @@
             // 
             AutoScaleDimensions=new SizeF(13F, 32F);
             AutoScaleMode=AutoScaleMode.Font;
-            ClientSize=new Size(800, 450);
+            ClientSize=new Size(1218, 697);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
