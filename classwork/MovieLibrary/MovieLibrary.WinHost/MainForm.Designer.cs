@@ -11,7 +11,7 @@
         ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose ( bool disposing )
+        protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
             {
@@ -26,151 +26,135 @@
         ///  Required method for Designer support - do not modify
         ///  the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent ()
+        private void InitializeComponent()
         {
-            components=new System.ComponentModel.Container();
-            menuStrip1=new MenuStrip();
-            contextMenuStrip1=new ContextMenuStrip(components);
-            _mainMenu=new MenuStrip();
-            fileToolStripMenuItem=new ToolStripMenuItem();
-            exitToolStripMenuItem=new ToolStripMenuItem();
-            moviesToolStripMenuItem=new ToolStripMenuItem();
-            addToolStripMenuItem=new ToolStripMenuItem();
-            editToolStripMenuItem=new ToolStripMenuItem();
-            deleteToolStripMenuItem=new ToolStripMenuItem();
-            helpToolStripMenuItem=new ToolStripMenuItem();
-            aboutToolStripMenuItem=new ToolStripMenuItem();
-            _lstMovies=new ListBox();
-            _mainMenu.SuspendLayout();
-            SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            menuStrip1.ImageScalingSize=new Size(32, 32);
-            menuStrip1.Location=new Point(0, 40);
-            menuStrip1.Name="menuStrip1";
-            menuStrip1.Size=new Size(830, 24);
-            menuStrip1.TabIndex=0;
-            menuStrip1.Text="menuStrip1";
-            // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize=new Size(32, 32);
-            contextMenuStrip1.Name="contextMenuStrip1";
-            contextMenuStrip1.Size=new Size(61, 4);
+            this._mainMenu = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moviesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._lstMovies = new System.Windows.Forms.ListBox();
+            this._mainMenu.SuspendLayout();
+            this.SuspendLayout();
             // 
             // _mainMenu
             // 
-            _mainMenu.ImageScalingSize=new Size(32, 32);
-            _mainMenu.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, moviesToolStripMenuItem, helpToolStripMenuItem });
-            _mainMenu.Location=new Point(0, 0);
-            _mainMenu.Name="_mainMenu";
-            _mainMenu.Size=new Size(830, 40);
-            _mainMenu.TabIndex=2;
-            _mainMenu.Text="menuStrip2";
+            this._mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.moviesToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this._mainMenu.Location = new System.Drawing.Point(0, 0);
+            this._mainMenu.Name = "_mainMenu";
+            this._mainMenu.Size = new System.Drawing.Size(800, 24);
+            this._mainMenu.TabIndex = 0;
+            this._mainMenu.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exitToolStripMenuItem });
-            fileToolStripMenuItem.Name="fileToolStripMenuItem";
-            fileToolStripMenuItem.Size=new Size(71, 36);
-            fileToolStripMenuItem.Text="&File";
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "&File";
             // 
             // exitToolStripMenuItem
             // 
-            exitToolStripMenuItem.Name="exitToolStripMenuItem";
-            exitToolStripMenuItem.Size=new Size(184, 44);
-            exitToolStripMenuItem.Text="Exit";
-            exitToolStripMenuItem.Click+=OnFileExit;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.OnFileExit);
             // 
             // moviesToolStripMenuItem
             // 
-            moviesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { addToolStripMenuItem, editToolStripMenuItem, deleteToolStripMenuItem });
-            moviesToolStripMenuItem.Name="moviesToolStripMenuItem";
-            moviesToolStripMenuItem.Size=new Size(111, 36);
-            moviesToolStripMenuItem.Text="&Movies";
+            this.moviesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.moviesToolStripMenuItem.Name = "moviesToolStripMenuItem";
+            this.moviesToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.moviesToolStripMenuItem.Text = "&Movies";
             // 
             // addToolStripMenuItem
             // 
-            addToolStripMenuItem.Name="addToolStripMenuItem";
-            addToolStripMenuItem.ShortcutKeys=Keys.Insert;
-            addToolStripMenuItem.Size=new Size(276, 44);
-            addToolStripMenuItem.Text="&Add";
-            addToolStripMenuItem.Click+=OnAddMovie;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Insert;
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.addToolStripMenuItem.Text = "&Add";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.OnAddMovie);
             // 
             // editToolStripMenuItem
             // 
-            editToolStripMenuItem.Name="editToolStripMenuItem";
-            editToolStripMenuItem.ShortcutKeys=Keys.Alt|Keys.Insert;
-            editToolStripMenuItem.Size=new Size(276, 44);
-            editToolStripMenuItem.Text="&Edit";
-            editToolStripMenuItem.Click+=OnEditMovie;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Insert)));
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.editToolStripMenuItem.Text = "&Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.OnEditMovie);
             // 
             // deleteToolStripMenuItem
             // 
-            deleteToolStripMenuItem.Name="deleteToolStripMenuItem";
-            deleteToolStripMenuItem.ShortcutKeys=Keys.Delete;
-            deleteToolStripMenuItem.Size=new Size(276, 44);
-            deleteToolStripMenuItem.Text="&Delete";
-            deleteToolStripMenuItem.Click+=OnDeleteMovie;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.deleteToolStripMenuItem.Text = "&Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.OnDeleteMovie);
             // 
             // helpToolStripMenuItem
             // 
-            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem });
-            helpToolStripMenuItem.Name="helpToolStripMenuItem";
-            helpToolStripMenuItem.Size=new Size(84, 36);
-            helpToolStripMenuItem.Text="&Help";
-            helpToolStripMenuItem.Click+=OnHelpClick;
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutToolStripMenuItem
             // 
-            aboutToolStripMenuItem.Name="aboutToolStripMenuItem";
-            aboutToolStripMenuItem.ShortcutKeys=Keys.F1;
-            aboutToolStripMenuItem.Size=new Size(251, 44);
-            aboutToolStripMenuItem.Text="&About";
-            aboutToolStripMenuItem.Click+=OnHelpAbout;
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.aboutToolStripMenuItem.Text = "&About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.OnHelpAbout);
             // 
             // _lstMovies
             // 
-            _lstMovies.FormattingEnabled=true;
-            _lstMovies.ItemHeight=32;
-            _lstMovies.Location=new Point(12, 67);
-            _lstMovies.Name="_lstMovies";
-            _lstMovies.Size=new Size(806, 548);
-            _lstMovies.TabIndex=3;
+            this._lstMovies.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._lstMovies.FormattingEnabled = true;
+            this._lstMovies.ItemHeight = 15;
+            this._lstMovies.Location = new System.Drawing.Point(0, 24);
+            this._lstMovies.Name = "_lstMovies";
+            this._lstMovies.Size = new System.Drawing.Size(800, 426);
+            this._lstMovies.TabIndex = 1;
             // 
             // MainForm
             // 
-            AutoScaleDimensions=new SizeF(13F, 32F);
-            AutoScaleMode=AutoScaleMode.Font;
-            BackColor=SystemColors.Control;
-            ClientSize=new Size(830, 629);
-            Controls.Add(_lstMovies);
-            Controls.Add(menuStrip1);
-            Controls.Add(_mainMenu);
-            Font=new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            MainMenuStrip=menuStrip1;
-            Name="MainForm";
-            RightToLeft=RightToLeft.No;
-            Text="Movie Library";
-            _mainMenu.ResumeLayout(false);
-            _mainMenu.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._lstMovies);
+            this.Controls.Add(this._mainMenu);
+            this.MainMenuStrip = this._mainMenu;
+            this.Name = "MainForm";
+            this.Text = "Movie Library";
+            this._mainMenu.ResumeLayout(false);
+            this._mainMenu.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
-        private MenuStrip menuStrip1;
-        private ContextMenuStrip contextMenuStrip1;
         private MenuStrip _mainMenu;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem moviesToolStripMenuItem;
-        private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem addToolStripMenuItem;
         private ToolStripMenuItem editToolStripMenuItem;
         private ToolStripMenuItem deleteToolStripMenuItem;
+        private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
         private ListBox _lstMovies;
     }
