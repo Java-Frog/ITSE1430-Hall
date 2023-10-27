@@ -125,27 +125,22 @@ public class MemoryMovieDatabase
             _movies.Remove(movie);  //Reference equality applies
     }
 
-    public Movie[] GetAll ()
+    public IEnumerable<Movie> GetAll ()
     {
-        var count = _movies.Count;
-        
-        ////How many are not null
-        //var count = 0;
-        //for (var index = 0; index < _movies.Length; ++index)
-        //    if (_movies[index] != null)
-        //        ++count;        
+        //IEnumerable<T> is a CRITICAL interface. Allows you to walk through the elements in whatever storage is being used. Allows you to use foreach(), which is read only.
 
-        //Clone array
-        var items = new Movie[_movies.Count];
-        var itemIndex = 0;
+        //If return type is IEnumerable<T> then you may use an iterator to implement
         foreach (var movie in _movies)
-            items[itemIndex++] = Clone(movie);
+            yield return Clone(movie);
+        //yield can only be used in situations that use IEnumerable<T>.
+        //It returns the first item in an iterator, once its called, it will return the next element.
+        //Once yield is used, normal return types no longer function in the same method.
 
-        //for (var index = 0; index < _movies.Length; ++index)
-        //    if (_movies[index] != null)
-        //        items[itemIndex++] = Clone(_movies[index]);
+        //var items = new List<Movie>();
+        //foreach (var movie in _movies)
+        //    items.Add(Clone(movie));
+        // return items;
 
-        return items;
     }
 
     private Movie Clone ( Movie movie )

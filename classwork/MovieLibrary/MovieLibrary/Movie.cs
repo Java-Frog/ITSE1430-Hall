@@ -2,10 +2,12 @@
  * ITSE 1430
  * Fall 2023
  */
+using System.ComponentModel.DataAnnotations;
+
 namespace MovieLibrary;
 
 /// <summary>Represents a movie.</summary>
-public class Movie : ValidatableObject
+public class Movie : IValidatableObject
 {
     #region Construction
 
@@ -84,7 +86,9 @@ public class Movie : ValidatableObject
 
     /// <summary>Validates the movie instance.</summary>
     /// <returns>Error message if invalid or empty string otherwise.</returns>
-    public override bool TryValidate ( out string message ) /* Movie this */
+ 
+    //TODO:Replace TryValidate() with IValidateObject all
+    public bool TryValidate ( out string message ) /* Movie this */
     {
         //Title is required
         if (String.IsNullOrEmpty(_title))
@@ -112,13 +116,35 @@ public class Movie : ValidatableObject
             message = "Movies before 1940 must be black and white";
             return false;
         };
-
-        return base.TryValidate(out message);
+        message = "";
+        return false ;
     }
 
     public override string ToString ()
     {
         return $"{Title} [{ReleaseYear}]";
+    }
+    
+    
+    //Updated to include IValidatableObject interface
+    public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
+    {
+        //Title is required
+        if (String.IsNullOrEmpty(_title))
+            yield return new ValidationResult("Title is required");
+
+        //Release Year >= 1900
+        if (ReleaseYear < MinimumReleaseYear)
+            yield return new ValidationResult("Release Year >=1900");
+
+
+        //Length >= 0
+        if (RunLength < 0)
+            yield return new ValidationResult("Length must be at least 0");
+
+
+        if (ReleaseYear < 1940 && !IsBlackAndWhite)
+            yield return new ValidationResult("Movies before 1940 must be black and white");
     }
 
     #region Private Members
