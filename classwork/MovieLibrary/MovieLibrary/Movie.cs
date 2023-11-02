@@ -2,12 +2,10 @@
  * ITSE 1430
  * Fall 2023
  */
-using System.ComponentModel.DataAnnotations;
-
 namespace MovieLibrary;
 
 /// <summary>Represents a movie.</summary>
-public class Movie : IValidatableObject
+public class Movie : ValidatableObject
 {
     #region Construction
 
@@ -84,29 +82,43 @@ public class Movie : IValidatableObject
     /// <summary>Gets the default rating.</summary>
     public readonly string DefaultRating = "PG";
 
-    /// <inheritdoc />
-    public override string ToString ()
-    {
-        return $"{Title} [{ReleaseYear}]";
-    }
-
-    /// <inheritdoc />
-    public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
+    /// <summary>Validates the movie instance.</summary>
+    /// <returns>Error message if invalid or empty string otherwise.</returns>
+    public override bool TryValidate ( out string message ) /* Movie this */
     {
         //Title is required
         if (String.IsNullOrEmpty(_title))
-            yield return new ValidationResult("Title is required");
+        {
+            message = "Title is required";
+            return false;
+        };
 
         //Release Year >= 1900
         if (ReleaseYear < MinimumReleaseYear)
-            yield return new ValidationResult($"Release Year must be >= {MinimumReleaseYear}");
+        {
+            message = $"Release Year must be >= {MinimumReleaseYear}";
+            return false;
+        };
 
         //Length >= 0
         if (RunLength < 0)
-            yield return new ValidationResult("Length must be at least 0");
+        {
+            message = "Length must be at least 0";
+            return false;
+        };
 
         if (ReleaseYear < 1940 && !IsBlackAndWhite)
-            yield return new ValidationResult("Movies before 1940 must be black and white");            
+        {
+            message = "Movies before 1940 must be black and white";
+            return false;
+        };
+
+        return base.TryValidate(out message);
+    }
+
+    public override string ToString ()
+    {
+        return $"{Title} [{ReleaseYear}]";
     }
 
     #region Private Members
