@@ -1,13 +1,13 @@
 ﻿/*
-* ITSE 1430
-* Fall 2023
-* 
-* Sample movie library
-*/
+ * ITSE 1430
+ * Fall 2023
+ * 
+ * Sample movie library
+ */
+
 namespace MovieLibrary.ConsoleHost;
 
-
-    enum MenuCommand
+enum MenuCommand
 {
     Add = 1,
     Edit,

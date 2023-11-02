@@ -84,49 +84,13 @@ public class Movie : IValidatableObject
     /// <summary>Gets the default rating.</summary>
     public readonly string DefaultRating = "PG";
 
-    /// <summary>Validates the movie instance.</summary>
-    /// <returns>Error message if invalid or empty string otherwise.</returns>
- 
-    //TODO:Replace TryValidate() with IValidateObject all
-    public bool TryValidate ( out string message ) /* Movie this */
-    {
-        //Title is required
-        if (String.IsNullOrEmpty(_title))
-        {
-            message = "Title is required";
-            return false;
-        };
-
-        //Release Year >= 1900
-        if (ReleaseYear < MinimumReleaseYear)
-        {
-            message = $"Release Year must be >= {MinimumReleaseYear}";
-            return false;
-        };
-
-        //Length >= 0
-        if (RunLength < 0)
-        {
-            message = "Length must be at least 0";
-            return false;
-        };
-
-        if (ReleaseYear < 1940 && !IsBlackAndWhite)
-        {
-            message = "Movies before 1940 must be black and white";
-            return false;
-        };
-        message = "";
-        return false ;
-    }
-
+    /// <inheritdoc />
     public override string ToString ()
     {
         return $"{Title} [{ReleaseYear}]";
     }
-    
-    
-    //Updated to include IValidatableObject interface
+
+    /// <inheritdoc />
     public IEnumerable<ValidationResult> Validate ( ValidationContext validationContext )
     {
         //Title is required
@@ -135,16 +99,14 @@ public class Movie : IValidatableObject
 
         //Release Year >= 1900
         if (ReleaseYear < MinimumReleaseYear)
-            yield return new ValidationResult("Release Year >=1900");
-
+            yield return new ValidationResult($"Release Year must be >= {MinimumReleaseYear}");
 
         //Length >= 0
         if (RunLength < 0)
             yield return new ValidationResult("Length must be at least 0");
 
-
         if (ReleaseYear < 1940 && !IsBlackAndWhite)
-            yield return new ValidationResult("Movies before 1940 must be black and white");
+            yield return new ValidationResult("Movies before 1940 must be black and white");            
     }
 
     #region Private Members

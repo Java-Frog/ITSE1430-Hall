@@ -43,14 +43,10 @@ public partial class MainForm : Form
 
         do
         {
-            //ShowDialog - modal
-            //Show - modeless
-            //dlg.Show();
             if (dlg.ShowDialog(this) != DialogResult.OK)
                 return;
 
-            //Add movie to library
-            //_movie = dlg.Movie;
+            //Add movie to library         
             var error = _database.Add(dlg.Movie);
             if (String.IsNullOrEmpty(error))
                 break;
@@ -75,7 +71,6 @@ public partial class MainForm : Form
                 return;
 
             //Edit movie in library
-            //_movie = dlg.Movie;
             var error = _database.Update(movie.Id, dlg.Movie);
             if (String.IsNullOrEmpty(error))
                 break;
@@ -123,14 +118,18 @@ public partial class MainForm : Form
         _lstMovies.DataSource = null;
 
         var movies = _database.GetAll();
-        _lstMovies.DataSource = movies;
 
+        var source = new BindingSource() {
+            DataSource = movies
+        };
+        _lstMovies.DataSource = source;
+        
         //movies[0].Title = "None";
-        ////movies[2] = new Movie() { Title = "Bob" };
+        //movies[2] = new Movie() { Title = "Bob" };
 
         //var movies2 = _database.GetAll();
     }
 
-    private MemoryMovieDatabase _database = new MemoryMovieDatabase();
+    private IMovieDatabase _database = new MemoryMovieDatabase();
     #endregion
 }
